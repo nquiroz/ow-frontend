@@ -1,0 +1,32 @@
+<!-- templates/lista-persona-partial -->
+<div class="col-md-3">
+    <div class="panel  panel-info">
+        <div class="panel-heading">Buscar tareas</div>
+        <div class="panel-body">
+            <form>
+                 <input type="text" ng-model="buscador">
+            </form>
+            <hr/>
+            <a class="btn btn-primary" ng-click="cargarLista()">Cargar Datos</a>
+        </div>
+    </div>
+</div>
+
+<div class="col-md-9">
+    <div class="panel  panel-info">
+        
+        
+        
+        <div class="panel-heading">Listado de Tareas</div>
+        <div class="panel-body">
+            <ul class="list-group">
+                <li ng-repeat="item in data.list | filter:buscador" class="list-group-item">
+                    <input type="checkbox" ng-model="item.finalizado"> {{item.nombre}}
+                </li>
+            </ul>
+
+        </div>
+        <a class="btn btn-primary" href="#tareas/crear"><i></i>Crear tarea</a>
+    </div>
+</div>
+<!-- Fin templates/lista-persona-partial -->
