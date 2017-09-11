@@ -1,20 +1,18 @@
 [
-{"nombre": "Tarea 1", "finalizado":true},
-{"nombre": "Tarea 2", "finalizado":false},
-{"nombre": "Tarea 3", "finalizado":false},
-{"nombre": "Tarea 4", "finalizado":true},
-{"nombre": "Tarea 5", "finalizado":false},
-{"nombre": "Tarea 6", "finalizado":true},
-{"nombre": "Tarea 7", "finalizado":true},
-{"nombre": "Tarea 8", "finalizado":false},
-{"nombre": "Tarea 9", "finalizado":false},
-{"nombre": "Tarea 10", "finalizado":true},
-{"nombre": "Tarea 11", "finalizado":false},
-{"nombre": "Tarea 12", "finalizado":true},
-{"nombre": "Tarea 13", "finalizado":true},
-{"nombre": "Tarea 14", "finalizado":false},
-{"nombre": "Tarea 15", "finalizado":false},
-{"nombre": "Tarea 16", "finalizado":true},
-{"nombre": "Tarea 17", "finalizado":false},
-{"nombre": "Tarea 18", "finalizado":true}
+    {
+        "nombre": "Tarea 1",
+        "finalizado": true
+    },
+    {
+        "nombre": "Tarea 2",
+        "finalizado": false
+    },
+    {
+        "nombre": "Tarea 3",
+        "finalizado": false
+    },
+    {
+        "nombre": "Tarea 4",
+        "finalizado": true
+    }
 ]

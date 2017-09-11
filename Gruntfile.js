@@ -21,8 +21,10 @@ module.exports = function (grunt) {
         app: {
             dist: "dist",
             src: "src",
-            host: "0.0.0.0",
-            port: "8888"
+            host: "localhost",
+            port: "8888",
+            apiPort: 8080,
+            livePort: 12345
         },
 
         /**
@@ -34,7 +36,7 @@ module.exports = function (grunt) {
                     hostname: '<%=app.host%>',
                     port: '<%=app.port%>',
                     base: "<%=app.dist%>",
-                    livereload: true,
+                    livereload: "<%=app.livePort%>",
                     middleware: function (connect, options, defaultMiddleware) {
                         var proxy = require('grunt-connect-proxy/lib/utils').proxyRequest;
                         return [proxy].concat(defaultMiddleware);
@@ -45,9 +47,9 @@ module.exports = function (grunt) {
                  * Create a proxy between the application and a REST api to prevent CORS.
                  */
                 proxies: [{
-                    context: '/app/rest',
-                    host: "192.168.10.1",
-                    port: 8080,
+                    context: '/api',
+                    host: "<%=app.host%>",
+                    port: "<%=app.apiPort%>"
                 }]
             }
         },
@@ -71,7 +73,8 @@ module.exports = function (grunt) {
                     sourcemap: false
                 },
                 files: {
-                    '<%=app.dist%>/css/main.css': '<%=app.src%>/scss/main.scss'
+                    '<%=app.dist%>/css/main.css': '<%=app.src%>/scss/main.scss',
+                    '<%=app.dist%>/css/_card.css': '<%=app.src%>/scss/_card.scss'
                 }
             }
         },
@@ -86,7 +89,20 @@ module.exports = function (grunt) {
                         src: '**/*',
                         dest: '<%=app.dist%>/fonts',
                         expand: true
-                    }, {
+                    },
+                    {
+                        cwd: '<%=app.src%>/vendors/ng-dialog/css',
+                        src: '**/*',
+                        dest: '<%=app.dist%>/css',
+                        expand: true
+                    },
+                    {
+                        cwd: '<%=app.src%>/vendors/angular-bootstrap-colorpicker/css',
+                        src: '**/*',
+                        dest: '<%=app.dist%>/css',
+                        expand: true
+                    },                        
+                    {
                         cwd: '<%=app.src%>/vendors/fontawesome/fonts',
                         src: '**/*',
                         dest: '<%=app.dist%>/fonts',
@@ -98,10 +114,16 @@ module.exports = function (grunt) {
                         expand: true
                     }, {
                         cwd: '<%=app.src%>/',
-                        src: '*.html',
+                        src: '**/*.html',
                         dest: '<%=app.dist%>/',
                         expand: true
+                    }, {
+                        cwd: '<%=app.src%>/data',
+                        src: '**/*',
+                        dest: '<%=app.dist%>/data',
+                        expand: true
                     }
+
                 ]
             }
         },
@@ -136,11 +158,38 @@ module.exports = function (grunt) {
             libs: {
                 src: [
                 //vendors js
-                '<%=app.src%>/vendors/jquery/<%=app.dist%>/jquery.min.js',
+                '<%=app.src%>/vendors/jquery/dist/jquery.min.js',
                 '<%=app.src%>/vendors/jquery-ui/jquery-ui.min.js',
                 '<%=app.src%>/vendors/bootstrap-sass/assets/javascripts/bootstrap.min.js',
+                '<%=app.src%>/vendors/angular/angular.min.js',
+                '<%=app.src%>/vendors/angular-route/angular-route.min.js',
                 //app scripts
-                '<%=app.dist%>/js/app.js'
+                '<%=app.dist%>/js/app.js',
+                '<%=app.dist%>/js/common/**/*.js',    
+                '<%=app.dist%>/js/controllers/**/*.js',
+                '<%=app.dist%>/js/services/**/*.js',
+                '<%=app.dist%>/js/directives/**/*.js',
+                '<%=app.dist%>/js/factorys/**/*.js'
+                ],
+                dest: '<%=app.dist%>/libs/app.min.js'
+            },
+            libsDev: {
+                src: [
+                //vendors js
+                '<%=app.src%>/vendors/jquery/dist/jquery.min.js',
+                '<%=app.src%>/vendors/jquery-ui/jquery-ui.min.js',
+                '<%=app.src%>/vendors/bootstrap-sass/assets/javascripts/bootstrap.min.js',
+                '<%=app.src%>/vendors/angular/angular.min.js',
+                '<%=app.src%>/vendors/angular-route/angular-route.min.js',
+                '<%=app.src%>/vendors/ng-dialog/js/ngDialog.min.js',    
+                '<%=app.src%>/vendors/ng-dialog/js/bootstrap-colorpicker-module.min.js',
+                //app scripts
+                '<%=app.src%>/js/app.js',
+                '<%=app.src%>/js/common/**/*.js',    
+                '<%=app.src%>/js/controllers/**/*.js',
+                '<%=app.src%>/js/services/**/*.js',
+                '<%=app.src%>/js/directives/**/*.js',
+                '<%=app.src%>/js/factorys/**/*.js'
                 ],
                 dest: '<%=app.dist%>/libs/app.min.js'
             }
@@ -200,7 +249,7 @@ module.exports = function (grunt) {
         watch: {
             img: {
                 options: {
-                    livereload: true
+                    livereload: "<%=app.livePort%>"
                 },
                 files: ['<%=app.src%>/**/*.png',
                         '<%=app.src%>/**/*.jpg',
@@ -215,29 +264,50 @@ module.exports = function (grunt) {
             },
             html: {
                 options: {
-                    livereload: true
+                    livereload: "<%=app.livePort%>"
                 },
                 files: ['<%=app.src%>/*.html', '<%=app.src%>/**/*.html'],
                 tasks: ['copy']
             },
             js: {
                 options: {
-                    livereload: true
+                    livereload: "<%=app.livePort%>"
                 },
                 files: ['<%=app.src%>/**/*.js'],
                 tasks: ['uglify', 'string-replace', 'concat']
             },
             sass: {
                 options: {
-                    livereload: true
+                    livereload: "<%=app.livePort%>"
                 },
                 files: ['<%=app.src%>/**/*.scss'],
                 tasks: ['copy', 'sass']
             }
+        },
+
+        json_server: {
+            options: {
+                keepalive: true,
+                port: "<%=app.apiPort%>",
+                hostname: "<%=app.host%>",
+                db: "./src/data/json-server-db.json",
+                routes: './src/data/json-server-routes.json'
+            }
+        },
+
+        concurrent: {
+            server: {
+                tasks: ['json_server', 'watch'],
+                options: {
+                    logConcurrentOutput: true
+                }
+            }
         }
     });
 
-    grunt.registerTask('default', ['uglify', 'sass', "copy", 'string-replace', 'concat', 'remove', 'usebanner']);
-    grunt.registerTask('server', ['default', 'configureProxies:server', "open", 'connect:server', 'watch']);
+    grunt.registerTask('default', ['uglify', 'sass', "copy", 'string-replace', 'concat:libs', 'remove', 'usebanner']);
+    grunt.registerTask('dev', ['sass', "copy", 'string-replace', 'concat:libsDev', 'remove', 'usebanner']);
+    grunt.registerTask('develop', ['dev', 'configureProxies:server', "open", 'connect:server', 'concurrent:server']);
+    grunt.registerTask('server', ['dev', 'configureProxies:server', "open", 'connect:server', 'watch']);
     grunt.registerTask('serve', ['server']);
 };

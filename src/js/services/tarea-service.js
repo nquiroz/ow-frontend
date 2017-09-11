@@ -14,7 +14,9 @@ app.service('TareaService', ['$http', function ($http) {
             return $http.get('data/tareas.json', {
                 params: params
             });
-        }        
-       
+        },
+        crear: function (params) {
+            return $http.post('data/tareas.json', params);
+        }
     }
 }]);

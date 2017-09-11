@@ -2,31 +2,28 @@
  * Clase encargada de manejar el listado de tareas.
  * @class
  */
-app.controller('TareaCrearCtrl', ['$scope', 'TareaService', 'Shared','$location',
+app.controller('TareaCrearCtrl', ['$scope', 'TareaService', 'Shared', '$location',
 
-    function ($scope, service, Shared,$location) {
-       
+    function ($scope, service, Shared, $location) {
+
         $scope.tarea = {
-            finalizado : true  
+            finalizado: false
         };
-        
-        /**
-         * Se encarga de crear la nueva tarea
-         * @function
-         * @private
-         */
-        $scope.crear = function() {
-            alert('Guardado');
+
+        $scope.guardar = function () {
             Shared.list.push($scope.tarea);
-            $location.path('/tareas');
-            /*service.crear(params)
+            alert("guardado!!");
+            $location.path("/tareas");
+            /*
+            service.crear($scope.tarea)
                 .then(function (response) {
-                    $scope.data.list.push = response.data;
+                    alert("guardado!!");
                 })
                 .catch(function (data, code) {
                     alert("Error al obtener las tareas");
-                });*/
+                });
+                */
+            //guardar;
         };
-    
     }
 ]);

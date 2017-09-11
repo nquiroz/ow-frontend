@@ -12,10 +12,6 @@ app.controller('TareaCtrl', ['$scope', 'TareaService', 'Shared',
          */
         $scope.data = Shared;
 
-         $scope.cargarList = function() {
-            getData();
-         };
-        
         /**
          * Se encarga de obtener los datos de la lista.
          * @function
@@ -31,8 +27,10 @@ app.controller('TareaCtrl', ['$scope', 'TareaService', 'Shared',
                 });
         }
 
-        
-        
+        $scope.cargarLista = function () {
+            getData();
+        };
+
         /**
          * Constructor / Entrypoint
          * @constructor

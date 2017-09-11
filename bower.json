@@ -1,19 +1,25 @@
 {
-    "name": "front-seed",
-    "version": "0.0.0",
-    "authors": ["Maximiliano Báez González <maxibaezpy@gmail>"],
-    "description": "Frontend seed project",
-    "ignore": [
-        "**/.*",
-        "node_modules",
-        "bower_components",
-        "test",
-        "tests"
-      ],
-    "dependencies": {
-        "jquery": "*",
-        "jquery-ui": "*",
-        "fontawesome": "*",
-        "bootstrap-sass": "*"
-    }
+  "name": "ow-fronend2017",
+  "version": "0.0.0",
+  "authors": [
+    "Natalia Quiroz <nati.quiroz@gmail>"
+  ],
+  "description": "Proyecto Fina Frontend - Un mini Trello",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "*",
+    "jquery-ui": "*",
+    "fontawesome": "*",
+    "bootstrap-sass": "*",
+    "angular": "^1.6.5",
+    "angular-route": "^1.6.5",
+    "angular-marked": "^1.2.2",
+    "angular-bootstrap-colorpicker": "^3.0.31"
+  }
 }

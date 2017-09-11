@@ -1,0 +1,38 @@
+<div data-toggle="validator" ng-controller="TableroCtrl">
+    <form ng-submit="guardarTablero()">
+
+        <div class="row text-center">
+            <div class="col-12 form-group">
+                <h4 class="panel-header">Nuevo Tablero</h4>
+            </div>
+        </div>
+
+        <div class="row text-center">
+            <div class="col-12 form-group">
+                <input type="text" maxlength="50" name="nombre" ng-model="nombreTablero" required="required">
+            </div>
+        </div>
+
+        <br/>
+
+        <div class="row text-center">
+            <div class="col-12 form-group">
+                <textarea name="descripcion" maxlength="1000" ng-model="descripcionTablero" cols="30" />
+            </div>
+        </div>
+
+        <div class="row text-center">
+             <label>Color</label>
+            <input type="color" class="form-control" ng-model="colorSeleccionado">
+            <!--<input colorpicker="rgb" type="text" ng-model="colorSeleccionado" />-->
+        </div>
+
+        
+        <div class="row text-center">
+            <button type="button" ng-click="cerrarModal()" class="btn btn-default">Cerrar</button>
+            <button type="submit" class="btn btn-default">Guardar</button>
+        </div>
+        
+        
+    </form>
+</div>

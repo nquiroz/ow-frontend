@@ -1,3 +1,39 @@
-<h1>Home</h1>
+<div class="row">
+    <div class="col-md-10 ml-2">
+        <h3>Tableros Personales</h3>
+    </div>
+</div>
+
 <hr/>
-<p>Estas en la página Principal</p>
+
+<div class="row">
+    <div class="col-md-4">
+        <div class="panel panel-info" ng-click="agregarTablero()">
+            <div class="panel-heading">
+            </div>
+            <div class="panel-body">
+                Crear nuevo Tablero <i class="fa fa-plus" />
+            </div>
+            <div class="panel-footer">
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4" ng-repeat="tablero in data.tableros">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <span>{{tablero.nombre}}</span>
+                <button type="button" class="btn-btn-secondary pull-right" data-toggle="tootltip" title="Eliminar"><i class="fa fa-trash-o"/></button>
+            </div>
+
+            <div class="panel-body">
+                {{tablero.descripcion}}
+            </div>
+            <div class="panel-footer">
+                <div class="text-right">
+                    <button type="button" class="btn btn-secondary" data-toggle="tooltip" title="Ver Tareas"><i class="fa fa-tasks"/></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>

@@ -1,0 +1,34 @@
+{
+  "tableros": [
+    {
+      "nombre": "Prueba",
+      "descripcion": "Chau",
+      "id": 1
+    },
+    {
+      "nombre": "asdfas",
+      "descripcion": "sadfsdf",
+      "id": 2
+    },
+    {
+      "nombre": "sadf",
+      "descripcion": "asdf",
+      "id": 3
+    },
+    {
+      "nombre": "sdfsd",
+      "descripcion": "sadfsdf",
+      "id": 4
+    },
+    {
+      "nombre": "sdfa",
+      "descripcion": "asdfdsf",
+      "id": 5
+    },
+    {
+      "nombre": "Prueba",
+      "descripcion": "hola",
+      "id": 6
+    }
+  ]
+}

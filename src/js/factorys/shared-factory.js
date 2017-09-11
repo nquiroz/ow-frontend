@@ -7,3 +7,14 @@ app.factory('Shared', function () {
         list: []
     };
 });
+
+
+/**
+ * Variable compartida entre los controladores. se utiliza para añadir
+ * elementos a la lista de tareas.
+ */
+app.factory('Tablero', function () {
+    return {
+        tableros: []
+    };
+});
